@@ -6,6 +6,7 @@ use crate::{field_arithmetic, field_specific};
 use super::LegendreSymbol;
 use crate::arithmetic::{adc, mac, sbb};
 use pasta_curves::arithmetic::{FieldExt, Group, SqrtRatio};
+use serde::{Deserialize, Serialize};
 
 use core::convert::TryInto;
 use core::fmt;
@@ -22,7 +23,7 @@ use subtle::{Choice, ConditionallySelectable, ConstantTimeEq, CtOption};
 // The internal representation of this type is four 64-bit unsigned
 // integers in little-endian order. `Fq` values are always in
 // Montgomery form; i.e., Fq(a) = aR mod q, with R = 2^256.
-#[derive(Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash, Deserialize, Serialize)]
 pub struct Fq(pub(crate) [u64; 4]);
 
 /// Constant representing the modulus
